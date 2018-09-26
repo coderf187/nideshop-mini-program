@@ -1,0 +1,115 @@
+<view class="container">
+    <view class="address-box">
+        <view class="address-item" bindtap="selectAddress" wx:if="{{checkedAddress.id > 0}}">
+            <view class="l">
+                <text class="name">{{checkedAddress.name}}</text>
+                <text class="default" wx:if="{{checkedAddress.is_default === 1}}">默认</text>
+            </view>
+            <view class="m">
+                <text class="mobile">{{checkedAddress.mobile}}</text>
+                <text class="address">{{checkedAddress.full_region + checkedAddress.address}}</text>
+            </view>
+            <view class="r">
+                <image src="/static/images/address_right.png"></image>
+            </view>
+        </view>
+        <view class="address-item address-empty" bindtap="addAddress" wx:if="{{!checkedAddress || !checkedAddress.id || checkedAddress.id<=0}}">
+            <view class="m">
+               还没有收货地址，去添加
+            </view>
+            <view class="r">
+                <image src="/static/images/address_right.png"></image>
+            </view>
+        </view>
+    </view>
+
+    <view class="coupon-box" style="display:none">
+        <view class="coupon-item">
+            <view class="l">
+                <text class="name">请选择优惠券</text>
+                <text class="txt">{{couponList.length}}张</text>
+            </view>
+            <view class="r">
+                <image src="/static/images/address_right.png"></image>
+            </view>
+        </view>
+    </view>
+
+    <view class="order-box">
+        <view class="order-item">
+            <view class="l">
+                <text class="name">商品合计</text>
+            </view>
+            <view class="r">
+                <text class="txt">￥{{goodsTotalPrice}}</text>
+            </view>
+        </view>
+        <view class="order-item">
+            <view class="l">
+                <text class="name">运费</text>
+            </view>
+            <view class="r">
+                <text class="txt" style="color: #FF6005;">{{freightPrice}}</text>
+            </view>
+        </view>
+        <view class="order-item no-border" style="display:none">
+            <view class="l">
+                <text class="name">优惠券</text>
+            </view>
+            <view class="r">
+                <text class="txt">-￥{{couponPrice}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="fb-body">
+        <view class="h">
+            <view class="label">买家留言</view>
+        </view>
+        <textarea class="content" maxlength="150" placeholder="这里可以填写您的要求，您可以填写唯一标识码，如“Happy112233”在这里，当地采购商将打印或手写此唯一标识码并与购物场景一起拍照，确保商品的真实唯一性" 
+        value="{{postscript}}" bindinput="bindinputContent"/>
+        <view class="text-count">{{contentLength}}/150</view>
+    </view>
+    
+    <view class="goods-items">
+        <view class="item" wx:for="{{checkedGoodsList}}" wx:key="{{item.id}}">
+            <view class="img">
+                <image src="{{item.list_pic_url}}"></image>
+            </view>
+            <view class="info">
+                <view class="t">
+                    <text class="name">{{item.goods_name}}</text>
+                    <text class="number">x{{item.number}}</text>
+                </view>
+                <view class="m">{{item.goods_specifition_name_value}}</view>
+                <view class="b">￥{{item.retail_price}}</view>
+            </view>
+        </view>
+    </view>
+
+    
+    <view wx:if="{{!isPending}}" class="order-info">
+        <view class="item-c">
+            <view class="l">付款方式</view>
+            <view class="r" style="display:none">
+                <view class="btn" bindtap="seePay">查看</view>
+            </view>
+            <view class="r" style="display:none">
+                <view class="btn" bindtap="savePay">一键保存</view>
+            </view>
+        </view>
+
+        <view class="item-d">
+            <text class="content">为了提供更低价格给用户，我们采用二维码转账方式支付</text>
+            
+            <text class="content" style="margin-top:20rpx;color:green;">您在下单后点击付款，会显示付款二维码，可长按保存，再通过微信首页→扫一扫→相册→选择刚保存的图片-确认支付</text>
+        </view>
+    </view>
+
+
+    <view class="order-total">
+        <view class="l">实付：￥{{actualPrice}}</view>
+        <!--<view class="r" bindtap="submitOrder">去付款</view>-->
+        <view class="r" bindtap="submitOrder">提交订单</view>
+    </view>
+</view>
