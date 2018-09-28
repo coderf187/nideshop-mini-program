@@ -1,5 +1,5 @@
-const ApiRootUrl = 'https://flyinthesky.cn/api/';
-//const ApiRootUrl = 'http://127.0.0.1:8360/api/';
+// const ApiRootUrl = 'https://flyinthesky.cn/api/';
+const ApiRootUrl = 'http://101.200.38.188:8360/api/';
 
 module.exports = {
   IndexUrl: ApiRootUrl + 'index/index', //首页数据接口
