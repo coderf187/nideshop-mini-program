@@ -22,7 +22,7 @@ App({
     },
     token: '',
 
-    shareTitle:"骨朵儿海外精选",
-    shareSubTitle:"无需漂洋过海去淘宝，只需坐在家中静候精选好货直达，丹麦产地直达，美国、日本、德国亚马逊直邮。品质保证！",
+    shareTitle:"小绵羊精选",
+    shareSubTitle:"精品产品，品质保证！",
   }
 })
